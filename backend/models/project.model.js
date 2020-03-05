@@ -4,18 +4,17 @@ var projectSchema = new mongoose.Schema({
 
     projectName: {
         type: String,
-        required: 'Company name can\'t be empty'
+        required: 'Company name can\'t be empty',
+        unique: true
     },
     ownerEmail: {
         type: String,
-        required: 'Email can\'t be empty',
-        unique: true
+        required: 'Email can\'t be empty'
     },
     startDate: {
         type: Date,
         required: 'start date can\'t be empty',
         min: [Date.now(),'atleast today\'s date']
-        
     },
     endDate: {
         type: Date,
@@ -40,6 +39,10 @@ var projectSchema = new mongoose.Schema({
     budget: {
         type: Number,
         required: 'budget can\'t be empty'
+    },
+    status:{
+        type: String,
+        required: 'status can\'t be empty'
     }
 
 });

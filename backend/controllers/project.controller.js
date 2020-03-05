@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
+//import { Project } from "../models/project.model";
 
 const Project = mongoose.model('Project');
 
@@ -18,12 +19,13 @@ module.exports.createProject = (req, res, next) => {
     project.contactName = req.body.contactName;
     project.phoneNumber = req.body.phoneNumber;
     project.budget = req.body.budget;
+    project.status = req.body.status;
     project.save((err) => {
         if (!err)
             return res.status(200).json({ status: true, message: 'project is created' });
         else {
             if (err.code == 11000)
-                res.status(422).send(['Duplicate email adrress found.']);
+                res.status(422).send(['Project Name already exists, please use the unique name']);
             else
                 return next(err);
         }
@@ -36,8 +38,24 @@ module.exports.createProject = (req, res, next) => {
  * /project/{id}
  */
 module.exports.getProject = (req, res, next) => {
-    console.log('is it here ');
-    Project.findOne({ projectId: req.params.projectId },
+    console.log("******* in side get one project with name ********::: " + req.query.projectName);
+    Project.find({ projectName: req.query.projectName },
+        (err, project) => {
+            if (err)
+                return res.status(404).json({ status: false, message: 'project does not found.' });
+            else
+                return res.status(200).json({ status: true, project: project });
+        }
+    );
+}
+
+/**
+ * get open project
+ * /project/{id}
+ */
+module.exports.getOpenProject = (req, res, next) => {
+    console.log("******* in side get open project with name ********::: " + req.query.projectName);
+    Project.find({ status: req.query.status },
         (err, project) => {
             if (err)
                 return res.status(404).json({ status: false, message: 'project does not found.' });
@@ -52,47 +70,68 @@ module.exports.getProject = (req, res, next) => {
  * /projects
  */
 module.exports.getProjects = (req, res, next) => {
-    Project.find((err, projects) => {
-        if (err)
-            return res.status(404).json({ status: false, message: 'projects are not found.' });
-        else
-            return res.status(200).json({ status: true, projects: projects });
-    }
+    console.log("********inside projects ******** " + req.query.ownerEmail);
+    Project.find({ ownerEmail: req.query.ownerEmail },
+        (err, project) => {
+            if (err)
+                return res.status(404).json({ status: false, message: 'projects are not found.' });
+            else
+                return res.status(200).json({ status: true, project: project });
+        }
     );
 }
+
+
+
 /**
  * update project
  * /updateProject/{projectId}
  */
 module.exports.updateProject = (req, res, next) => {
-    Project.findOne({ _id: req.params._id },
-        (err, project) => {
-            if (err)
-                res.send(err);
-            console.log(req.body.ownerEmail);
-            // project.ownerEmail = req.body.ownerEmail ? req.body.ownerEmail : project.ownerEmail;
-            // project.startDate = req.body.startDate ? req.body.startDate : project.startDate;
-            // project.endDate = req.body.endDate ? req.body.endDate : project.endDate;
-            // project.city = req.body.city ? req.body.city : project.city;
-            // project.state = req.body.state ? req.body.state : project.state;
-            // project.contactName = req.body.contactName ? req.body.contactName : project.contactName;
-            // project.phoneNumber = req.body.phoneNumber ? req.body.phoneNumber : project.phoneNumber;
-            // project.budget = req.body.budget ? req.body.budget : project.budget;
+    console.log("********inside update project ******** " + req.body.projectName);
+    if (!req.body) {
+        return res.status(400).send({
+            message: "Note content can not be empty"
+        });
+    }
 
-            // // save the contact and check for errors
-            // project.save((err) => {
-            //     if (err)
-            //         return res.status(404).json({ status: false, message: 'project could not be found.' });
-            //     else
-            //         return res.status(200).json({ status: true, message: 'project is updated' });
-           // });
+    // Find note and update it with the request body
+    Project.findByIdAndUpdate(req.body.objectId, {
+        projectName: req.body.projectName,
+        ownerEmail: req.body.ownerEmail,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        city: req.body.city,
+        state: req.body.state,
+        contactName: req.body.contactName,
+        phoneNumber: req.body.phoneNumber,
+        budget: req.body.budget,
+        status:req.body.status
+
+    }, { new: true })
+        .then(project => {
+            if (!project) {
+                return res.status(404).send({
+                    message: "project not found with name with 404" + req.body.projectName
+                });
+            }
+            res.send(project);
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "project not found with name " + req.body.projectName
+                });
+            }
+            return res.status(500).send({
+                message: "Error updating note with name " + req.body.projectName
+            });
         });
 };
 
 // Handle delete contact
 module.exports.deleteProject = (req, res) => {
     Project.remove({
-        projectId: req.params.projectId
+        projectName: req.query.projectName
     }, function (err, project) {
         if (err)
             return res.status(404).json({ status: false, message: 'project could not be deleted.' });

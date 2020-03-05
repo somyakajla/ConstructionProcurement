@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ctrlUser = require('../controllers/user.controller');
 const ctrlProject = require('../controllers/project.controller');
-// const ctrlProjectBidding = require('../controllers/projectBidding.controller');
+const ctrlProjectBidding = require('../controllers/projectBidding.controller');
 
 const jwtHelper = require('../config/jwtHelper');
 
@@ -26,11 +26,11 @@ router.delete('/deleteProject', ctrlProject.deleteProject);
 // /**
 //  * Project bidding routes
 //  */
-// router.post('/bidProject', ctrlProjectBidding.bidProject);
-// router.get('/bidProject/{projectBidId}', ctrlProject.getProject);
-// router.get('/bidProjects', ctrlProject.getProjects);
-// router.put('/updateBidProject/{projectBidId}', ctrlProject.updateProject);
-// router.delete('/deleteBidProject/{projectBidId}', ctrlProject.deleteProject);
+router.post('/bidProject', ctrlProjectBidding.bidProject);
+router.get('/bidProject', ctrlProjectBidding.getBidProject);
+router.get('/bidProjects', ctrlProjectBidding.getBidProjects);
+router.put('/updateBidProject', ctrlProjectBidding.updateBidProject);
+router.delete('/deleteBidProject', ctrlProjectBidding.deleteBidProject);
 
 
 module.exports = router;
