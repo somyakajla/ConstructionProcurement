@@ -20,6 +20,7 @@ router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.post('/createProject', ctrlProject.createProject);
 router.get('/project', ctrlProject.getProject);
 router.get('/projects', ctrlProject.getProjects);
+router.get('/openProjects', ctrlProject.getOpenProjects);
 router.put('/updateProject', ctrlProject.updateProject);
 router.delete('/deleteProject', ctrlProject.deleteProject);
 

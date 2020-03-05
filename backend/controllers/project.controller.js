@@ -53,7 +53,7 @@ module.exports.getProject = (req, res, next) => {
  * get open project
  * /project/{id}
  */
-module.exports.getOpenProject = (req, res, next) => {
+module.exports.getOpenProjects = (req, res, next) => {
     console.log("******* in side get open project with name ********::: " + req.query.projectName);
     Project.find({ status: req.query.status },
         (err, project) => {
@@ -91,41 +91,32 @@ module.exports.updateProject = (req, res, next) => {
     console.log("********inside update project ******** " + req.body.projectName);
     if (!req.body) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            message: "project content can not be empty"
         });
     }
 
-    // Find note and update it with the request body
-    Project.findByIdAndUpdate(req.body.objectId, {
-        projectName: req.body.projectName,
-        ownerEmail: req.body.ownerEmail,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
-        city: req.body.city,
-        state: req.body.state,
-        contactName: req.body.contactName,
-        phoneNumber: req.body.phoneNumber,
-        budget: req.body.budget,
-        status:req.body.status
-
-    }, { new: true })
-        .then(project => {
-            if (!project) {
-                return res.status(404).send({
-                    message: "project not found with name with 404" + req.body.projectName
-                });
-            }
-            res.send(project);
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                return res.status(404).send({
-                    message: "project not found with name " + req.body.projectName
-                });
-            }
-            return res.status(500).send({
-                message: "Error updating note with name " + req.body.projectName
+    Project.findOne({projectName: req.query.projectName},  (err, project) =>{
+        if (err)
+            res.send(err);
+        project.state = req.body.state;
+        project.ownerEmail = req.body.ownerEmail;
+        project.startDate = req.body.startDate;
+        project.endDate = req.body.endDate;
+        project.city = req.body.city;
+        project.state = req.body.state;
+        project.contactName = req.body.contactName;
+        project.phoneNumber = req.body.phoneNumber;
+        project.budget = req.body.budget;
+        project.status = req.body.status;
+        project.save(function (err) {
+            if (err)
+                res.json(err);
+            res.json({
+                message: 'project Info updated',
+                data: project
             });
         });
+    });
 };
 
 // Handle delete contact

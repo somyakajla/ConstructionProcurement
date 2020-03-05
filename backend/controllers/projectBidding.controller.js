@@ -33,11 +33,12 @@ module.exports.bidProject = (req, res, next) => {
 }
 
 /**
- * get project
+ * get big project
  * /project/{id}
  */
 module.exports.getBidProject = (req, res, next) => {
-    ProjectBid.findOne({ projectBidId: req.params.projectBidId },
+    console.log("********inside project bid ******** " + req.query.contractorEmail + "and project Name" +req.query.projectName);
+    ProjectBid.find({ contractorEmail: req.query.contractorEmail , projectName: req.query.projectName},
         (err, projectBid) => {
             if (err)
                 return res.status(404).json({ status: false, message: 'project bid could not found.' });
@@ -48,16 +49,18 @@ module.exports.getBidProject = (req, res, next) => {
 }
 
 /**
- * get projects
+ * get bid projects
  * /projects
  */
 module.exports.getBidProjects = (req, res, next) => {
-    ProjectBid.findAll((err, projectsbid) => {
-        if (err)
-            return res.status(404).json({ status: false, message: 'projects bidding could not be found.' });
-        else
-            return res.status(200).json({ status: true, projectsbid: projectsbid });
-    }
+    console.log("********inside projects bid ******** " + req.query.contractorEmail );
+    ProjectBid.find({ contractorEmail: req.query.contractorEmail},
+        (err, projectBid) => {
+            if (err)
+                return res.status(404).json({ status: false, message: 'projects are not found.' });
+            else
+                return res.status(200).json({ status: true, projectBid: projectBid });
+        }
     );
 }
 /**
@@ -65,33 +68,40 @@ module.exports.getBidProjects = (req, res, next) => {
  * /updateProject/{projectId}
  */
 module.exports.updateBidProject = (req, res, next) => {
-    ProjectBid.findById({ projectBidId: req.params.projectBidId },
-        (err, projectBid) => {
-            if (err)
-                res.send(err);
-            projectBid.contractorEmail = req.body.contractorEmail ? req.body.contractorEmail : projectBid.contractorEmail;
-            projectBid.startDate = req.body.startDate ? req.body.startDate : projectBid.startDate;
-            projectBid.endDate = req.body.endDate ? req.body.endDate : projectBid.endDate;
-            projectBid.city = req.body.city ? req.body.city : projectBid.city;
-            projectBid.state = req.body.state ? req.body.state : projectBid.state;
-            projectBid.contractorName = req.body.contractorName ? req.body.contractorName : projectBid.contractorName;
-            projectBid.phoneNumber = req.body.phoneNumber ? req.body.phoneNumber : projectBid.phoneNumber;
-            projectBid.budget = req.body.budget ? req.body.budget : projectBid.budget;
+    console.log("********inside update bid project ******** " + req.query.projectName+"and contractor email"+req.query.contractorEmail);
+    if (!req.body) {
+        return res.status(400).send({
+            message: "project bid can not be empty"
+        });
+    }
 
-            // save the contact and check for errors
-            projectBid.save((err) => {
-                if (err)
-                    return res.status(404).json({ status: false, message: 'project bid could not be found.' });
-                else
-                    return res.status(200).json({ status: true, message: 'project bidding has been updated' });
+    ProjectBid.findOne({projectName: req.query.projectName, contractorEmail: req.query.contractorEmail},  (err, projectBid) =>{
+        if (err)
+            res.send(err);
+        projectBid.contractorEmail = req.body.contractorEmail;
+        projectBid.startDate = req.body.startDate;
+        projectBid.endDate = req.body.endDate;
+        projectBid.city = req.body.city;
+        projectBid.state = req.body.state;
+        projectBid.ontractorName = req.body.ontractorName;
+        projectBid.phoneNumber = req.body.phoneNumber;
+        projectBid.budget = req.body.budget;
+        projectBid.bidStatus = req.body.bidStatus;
+        projectBid.save(function (err) {
+            if (err)
+                res.json(err);
+            res.json({
+                message: 'project bid info updated',
+                data: project
             });
         });
+    });
 };
 
 // Handle delete contact
 module.exports.deleteBidProject = (req, res) => {
     ProjectBid.remove({
-        projectBidId: req.params.projectBidId
+        contractorEmail: req.query.contractorEmail , projectName: req.query.projectName
     }, function (err, projectBid) {
         if (err)
             return res.status(404).json({ status: false, message: 'project bid could not be deleted.' });
