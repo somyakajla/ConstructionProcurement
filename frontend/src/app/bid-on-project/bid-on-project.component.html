@@ -1,0 +1,20 @@
+
+
+
+
+<form name='certform' #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+        <input type="text" #Budget="ngModel" [(ngModel)]="projectService.selectedProject.Budget" name="Budget" placeholder="Project Budget" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !Budget.valid }">
+        <div *ngIf="signUpForm.submitted && !Budget.valid">
+          <label class="validation-message">This field is required.</label>
+        </div>
+
+        <input type="text" #Duration="ngModel" [(ngModel)]="projectService.selectedProject.Duration" name="Duration" placeholder="Duration" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !Duration.valid }">
+        <div *ngIf="signUpForm.submitted && !Duration.valid">
+            <label class="validation-message">This field is required.</label>
+          </div>
+        <input type="text" #Location="ngModel" [(ngModel)]="projectService.selectedProject.Location" name="Comments" placeholder="Comments">
+        <div style="align-items: center;">
+            <input type="submit" value="Bid On Project" >
+        </div>
+        
+    </form>
