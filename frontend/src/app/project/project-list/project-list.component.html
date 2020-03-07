@@ -15,16 +15,16 @@
             <tbody>
                     <tr *ngFor="let projectlist of projectList">
                             <td>
-                                {{projectlist.Project}}
+                                {{projectlist.projectName}}
                             </td>
                             <td>
-                                {{projectlist.Status}}
+                                {{projectlist.status}}
                             </td>
                             <td>
-                                {{projectlist.Owner}}
+                                {{projectlist.ownerEmail}}
                             </td>
                             <td (click)="projectDetails(projectlist)">
-                                {{projectlist.Project}}
+                                {{projectlist.projectName}}
                             </td>
             
                         </tr>

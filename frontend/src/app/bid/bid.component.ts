@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { BidOnProjectComponent } from '../bid-on-project/bid-on-project.component';
 @Component({
   selector: 'app-bid',

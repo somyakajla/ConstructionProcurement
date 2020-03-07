@@ -1,7 +1,12 @@
 export class Project {
-    Project: string;
-    Owner: string;
-    Duration: string;
-    Budget: string;
-    Location: string;
+    projectName: string;
+    ownerEmail: string;
+    startDate: string;
+    endDate: string;
+    city: string;
+    state: string;
+    contactName: string;
+    phoneNumber: string;
+    budget: string;
+    status: string;
 }
