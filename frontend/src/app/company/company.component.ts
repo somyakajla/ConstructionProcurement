@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { UserService } from '../shared/user.service'
-import { AuthenticateService } from '../shared/authenticate.service'
-import { User } from '../shared/user.model';
-
-
+import { Project } from '../shared/project.model'
+import { ProjectService } from '../shared/project.service'
+import { MatDialog } from '@angular/material/dialog';
+import { CreateProjectComponent } from '../create-project/create-project.component'
+import { UpdateProjectComponent } from '../update-project/update-project.component';
 
 @Component({
   selector: 'app-company',
@@ -13,16 +12,48 @@ import { User } from '../shared/user.model';
 })
 
 export class CompanyComponent implements OnInit {
-  loading = false;
-  users: User[];
+  projects: Project[] = [];
+  project: Project;
 
-  constructor(private userService: UserService) { }
+  constructor(public projectService: ProjectService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.loading = true;
-    this.userService.getAll().pipe(first()).subscribe(users => {
-        this.loading = false;
-        this.users = users;
+    this.userProjectList();
+  }
+  
+
+
+  userProjectList() {
+    var item = JSON.parse(localStorage.getItem("currentUser"));
+    this.projectService.getProjectList(item.email).subscribe(projects => {
+      this.projects = projects
     });
+  }
+
+  delete(projectName) {
+    this.projectService.deleteProject(projectName)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.userProjectList();
+        },
+        error => console.log(error));
+  }
+
+  addProject() {
+    this.dialog.open(CreateProjectComponent);
+  }
+
+  update(name) {
+    //localStorage.setItem('projectName', name);
+    //alert(name);
+    var pr: Project;
+    this.projectService.getProject(name).subscribe(data => {
+        pr = data;
+        localStorage.setItem('updateProjectObject', JSON.stringify(data));
+    });
+
+    this.dialog.open(UpdateProjectComponent);
   }
 }

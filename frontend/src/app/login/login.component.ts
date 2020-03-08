@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
               if(this.authenticateService.currentUserValue.type === "Company")
                 this.router.navigate(['/company']);
               else
-                this.router.navigate(['/bidProject']);
+                this.router.navigate(['/contractor']);
             },
             error => {
                 this.loading = false;

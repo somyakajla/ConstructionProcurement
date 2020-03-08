@@ -1,0 +1,60 @@
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+        <input type="text" #projectName="ngModel" [(ngModel)]="projectService.selectedProject.projectName" name="projectName" placeholder="projectName"
+        required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !projectName.valid }">
+        <div *ngIf="signUpForm.submitted && !projectName.valid">
+          <label class="validation-message">This field is required.</label>
+        </div>
+      
+     
+      <input type="text" #startDate="ngModel" [(ngModel)]="projectService.selectedProject.startDate" name="startDate" placeholder="startDate"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !startDate.valid }">
+      <div *ngIf="signUpForm.submitted && !startDate.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+      <input type="text" #endDate="ngModel" [(ngModel)]="projectService.selectedProject.endDate" name="endDate" placeholder="endDate"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !endDate.valid }">
+      <div *ngIf="signUpForm.submitted && !endDate.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+      <input type="text" #city="ngModel" [(ngModel)]="projectService.selectedProject.city" name="city" placeholder="city"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !city.valid }">
+      <div *ngIf="signUpForm.submitted && !city.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    
+      <input type="text" #state="ngModel" [(ngModel)]="projectService.selectedProject.state" name="state" placeholder="state"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !state.valid }">
+      <div *ngIf="signUpForm.submitted && !state.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    
+      <input type="text" #contactName="ngModel" [(ngModel)]="projectService.selectedProject.contactName" name="contactName" placeholder="contactName"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !contactName.valid }">
+      <div *ngIf="signUpForm.submitted && !contactName.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    
+      <input type="text" #phoneNumber="ngModel" [(ngModel)]="projectService.selectedProject.phoneNumber" name="phoneNumber" placeholder="phoneNumber"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !phoneNumber.valid }">
+      <div *ngIf="signUpForm.submitted && !phoneNumber.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+      <input type="text" #budget="ngModel" [(ngModel)]="projectService.selectedProject.budget" name="budget" placeholder="budget"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !budget.valid }">
+      <div *ngIf="signUpForm.submitted && !budget.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+      <input type="submit" value="Create Project" >
+    </form>
+    
+    <!-- Success message -->
+    <div class="success" *ngIf="showSucessMessage">
+      Saved successfully
+    </div>
+    
+    <!-- Error message -->
+    <div class="alert" *ngIf="serverErrorMessages">
+      {{serverErrorMessages}}
+    </div>
+    
+     

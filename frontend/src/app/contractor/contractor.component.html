@@ -1,1 +1,41 @@
-<p>contractor works!</p>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Project Bidding List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Project Status</th>
+            <th>Owner Email</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Bid</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let openlist of projectOpenList">
+            <td>{{openlist.projectName}}</td>
+            <td>{{openlist.status}}</td>
+            <td>{{openlist.ownerEmail}}</td>
+            <td>{{openlist.startDate}}</td>
+            <td>{{openlist.endDate}}</td>
+            <td></td>
+            <td>
+                <button (click) = bidOnProject(openlist.projectName) style="width: 50px; height: 20px;" > </button>
+            </td>
+          </tr>
+          <tr *ngFor="let bidlist of projectBiddingList">
+            <td>{{bidlist.projectName}}</td>
+            <td>{{bidlist.bidStatus}}</td>
+            <td>{{bidlist.contractorEmail}}</td>
+            <td>{{bidlist.startDate}}</td>
+            <td>{{bidlist.endDate}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

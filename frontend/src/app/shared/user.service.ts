@@ -25,8 +25,4 @@ export class UserService {
   postUser(user: User){
     return this.http.post(environment.apiBaseUrl+'/register',user);
   }
-
-  getAll() {
-    return this.http.get<User[]>(`${environment.apiBaseUrl}/users`);
-  }
 }

@@ -1,12 +1,13 @@
-export class Project {
+export class ProjectBid {
     projectName: string;
-    ownerEmail: string;
+    contractorEmail: string;
     startDate: string;
     endDate: string;
     city: string;
     state: string;
-    contactName: string;
+    contractorName: string;
     phoneNumber: string;
     budget: string;
-    status: string;
+    bidStatus: string;
+
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
-//import { CreateProjectComponent } from './project/create-project/create-project.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,6 +15,5 @@ export class AppComponent implements OnInit {
   title = 'construction';
 
   onCreate() {
-    //this.dialog.open(CreateProjectComponent);
   }
 }
