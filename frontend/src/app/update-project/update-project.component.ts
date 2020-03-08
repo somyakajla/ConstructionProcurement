@@ -44,26 +44,27 @@ export class UpdateProjectComponent implements OnInit {
     ); 
     this.gotoList();
   }
-    fillForm(project: Project) {
-      var item2 = JSON.parse(localStorage.getItem("currentUser"));
-      return this.projectService.selectedProject = {
-        projectName: project.projectName,
-        ownerEmail:item2.email,
-        startDate: project.startDate,
-        endDate: project.endDate,
-        city: project.city,
-        state: project.state,
-        status: '',
-        phoneNumber: project.phoneNumber,
-        contactName: project.contactName,
-        budget:project.budget,
-      };
-    }
+
+  fillForm(project: Project) {
+    var item2 = JSON.parse(localStorage.getItem("currentUser"));
+    return this.projectService.selectedProject = {
+      projectName: project.projectName,
+      ownerEmail:item2.email,
+      startDate: project.startDate,
+      endDate: project.endDate,
+      city: project.city,
+      state: project.state,
+      status: '',
+      phoneNumber: project.phoneNumber,
+      contactName: project.contactName,
+      budget:project.budget,
+    };
+  }
 
   onSubmit(form: NgForm) {
-    alert('1');
     this.updateProject(form);    
   }
+
   gotoList() {
     this.router.navigate(['/company']);
   }

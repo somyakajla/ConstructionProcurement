@@ -36,18 +36,6 @@ export class ProjectService {
     bidStatus: ''
   };
 
-  project: Project = {
-    projectName: '',
-    ownerEmail: '',
-    startDate: '',
-    endDate: '',
-    city: '',
-    state: '',
-    contactName: '',
-    phoneNumber: '',
-    budget: '',
-    status: ''
-  };
 
   constructor(private http: HttpClient) { }
 

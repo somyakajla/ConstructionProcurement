@@ -1,0 +1,37 @@
+<div class="panel panel-primary">
+        <div class="panel-heading">
+          <table>
+            <tr>
+              <td><h2>Bid List to Accept</h2></td>
+            </tr>
+          </table>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Contrctor Email</th>
+                <th>Contact Person</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Budget</th>
+                <th>Bid Status</th>
+                <th>Accept Bid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bid of projectBids">
+                <td (click) = bidDetails(bid.projectName)>{{bid.projectName}}</td>
+                <td>{{bid.contractorEmail}}</td>
+                <td>{{bid.contactName}}</td>
+                <td>{{bid.startDate}}</td>
+                <td>{{bid.endDate}}</td>
+                <td>{{bid.budget}}</td>
+                <td>{{bid.bidStatus}}</td>
+                <td> <button (click) = acceptBid(bid.projectName)>Accept Bid</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

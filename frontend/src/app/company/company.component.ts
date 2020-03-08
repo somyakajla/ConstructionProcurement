@@ -56,4 +56,14 @@ export class CompanyComponent implements OnInit {
 
     this.dialog.open(UpdateProjectComponent);
   }
+
+  accept(projectName) {
+    this.projectService.deleteProject(projectName)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.userProjectList();
+        },
+        error => console.log(error));
+  }
 }

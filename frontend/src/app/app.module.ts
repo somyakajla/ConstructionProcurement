@@ -15,6 +15,7 @@ import { ContractorComponent } from './contractor/contractor.component';
 import { BidOnProjectComponent } from './bid-on-project/bid-on-project.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
+import { AcceptWinningBidComponent } from './accept-winning-bid/accept-winning-bid.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { UpdateProjectComponent } from './update-project/update-project.componen
     BidOnProjectComponent,
     CreateProjectComponent,
     UpdateProjectComponent,
+    AcceptWinningBidComponent,
   ],
   imports: [
     BrowserModule,
