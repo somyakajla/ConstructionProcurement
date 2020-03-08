@@ -18,7 +18,7 @@ module.exports.bidProject = (req, res, next) => {
     projectBid.contractorName = req.body.contractorName;
     projectBid.phoneNumber = req.body.phoneNumber;
     projectBid.budget = req.body.budget;
-    projectBid.bidStatus = req.body.bidStatus;
+    projectBid.bidStatus = 'applied';
     projectBid.save((err, doc) => {
         if (!err)
             res.send(doc);
@@ -41,9 +41,9 @@ module.exports.getBidProject = (req, res, next) => {
     ProjectBid.find({ contractorEmail: req.query.contractorEmail , projectName: req.query.projectName},
         (err, projectBid) => {
             if (err)
-                return res.status(404).json({ status: false, message: 'project bid could not found.' });
+                return res.status(404).json( 'project bid could not found.' );
             else
-                return res.status(200).json({ status: true, projectBid: projectBid });
+                return res.status(200).json(projectBid);
         }
     );
 }
@@ -57,9 +57,9 @@ module.exports.getBidProjects = (req, res, next) => {
     ProjectBid.find({ contractorEmail: req.query.contractorEmail},
         (err, projectBid) => {
             if (err)
-                return res.status(404).json({ status: false, message: 'projects are not found.' });
+                return res.status(404).json('projects are not found.');
             else
-                return res.status(200).json({ status: true, projectBid: projectBid });
+                return res.status(200).json(projectBid);
         }
     );
 }
@@ -104,8 +104,8 @@ module.exports.deleteBidProject = (req, res) => {
         contractorEmail: req.query.contractorEmail , projectName: req.query.projectName
     }, function (err, projectBid) {
         if (err)
-            return res.status(404).json({ status: false, message: 'project bid could not be deleted.' });
+            return res.status(404).json( 'project bid could not be deleted.' );
         else
-            return res.status(200).json({ status: true, message: 'project bid deleted' });
+            return res.status(200).json('project bid deleted');
     });
 };

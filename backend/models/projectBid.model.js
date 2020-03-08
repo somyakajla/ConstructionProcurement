@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 var projectBidSchema = new mongoose.Schema({
     projectName: {
         type: String,
-        required: 'Company name can\'t be empty',
+        required: 'project name can\'t be empty',
     },
     contractorEmail: {
         type: String,

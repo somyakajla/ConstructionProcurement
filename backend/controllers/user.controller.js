@@ -33,7 +33,7 @@ module.exports.login = (req, res, next) => {
         // error from passport middleware
         if (err) return res.status(400).json(err);
         // registered user
-        else if (user) return res.status(200).json({ "token": user.generateJwt() });
+        else if (user) return res.status(200).json({ "email": user.email,  "type": user.userType, "token": user.generateJwt() });
         // unknown user or wrong password
         else return res.status(404).json(info);
     })(req, res);
@@ -43,9 +43,20 @@ module.exports.userProfile = (req, res, next) =>{
     User.findOne({ _id: req._id },
         (err, user) => {
             if (!user)
-                return res.status(404).json({ status: false, message: 'User record not found.' });
+                return res.status(404).json({ message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : user });
+                return res.status(200).json({user : user });
+        }
+    );
+}
+
+module.exports.users = (req, res, next) =>{
+    User.find({}, 
+        (err, users) => {
+            if (!users)
+                return res.status(404).json({ message: 'Users record not found.' });
+            else
+                return res.status(200).json(users);
         }
     );
 }

@@ -19,7 +19,7 @@ module.exports.createProject = (req, res, next) => {
     project.contactName = req.body.contactName;
     project.phoneNumber = req.body.phoneNumber;
     project.budget = req.body.budget;
-    project.status = req.body.status;
+    project.status = 'open';
     project.save((err) => {
         if (!err)
             return res.status(200).json({ status: true, message: 'project is created' });
@@ -39,12 +39,12 @@ module.exports.createProject = (req, res, next) => {
  */
 module.exports.getProject = (req, res, next) => {
     console.log("******* in side get one project with name ********::: " + req.query.projectName);
-    Project.find({ projectName: req.query.projectName },
+    Project.findOne({ projectName: req.query.projectName },
         (err, project) => {
             if (err)
                 return res.status(404).json({ status: false, message: 'project does not found.' });
             else
-                return res.status(200).json({ status: true, project: project });
+                return res.status(200).json(project);
         }
     );
 }
@@ -54,13 +54,13 @@ module.exports.getProject = (req, res, next) => {
  * /project/{id}
  */
 module.exports.getOpenProjects = (req, res, next) => {
-    console.log("******* in side get open project with name ********::: " + req.query.projectName);
+    console.log("******* in side get open project with open status ********::: " + req.query.projectName);
     Project.find({ status: req.query.status },
         (err, project) => {
             if (err)
                 return res.status(404).json({ status: false, message: 'project does not found.' });
             else
-                return res.status(200).json({ status: true, project: project });
+                return res.status(200).json(project);
         }
     );
 }
@@ -76,7 +76,7 @@ module.exports.getProjects = (req, res, next) => {
             if (err)
                 return res.status(404).json({ status: false, message: 'projects are not found.' });
             else
-                return res.status(200).json({ status: true, project: project });
+                return res.status(200).json(project);
         }
     );
 }
@@ -121,12 +121,13 @@ module.exports.updateProject = (req, res, next) => {
 
 // Handle delete contact
 module.exports.deleteProject = (req, res) => {
+    console.log("********inside delete project ******** " + req.body.projectName);
     Project.remove({
         projectName: req.query.projectName
     }, function (err, project) {
         if (err)
-            return res.status(404).json({ status: false, message: 'project could not be deleted.' });
+            return res.status(404).json('project could not be deleted.' );
         else
-            return res.status(200).json({ status: true, message: 'project deleted' });
+            return res.status(200).json('project deleted' );
     });
 };
