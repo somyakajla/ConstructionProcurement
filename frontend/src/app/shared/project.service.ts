@@ -62,7 +62,7 @@ export class ProjectService {
   }
 
   getProjectBiddingList(email: string): Observable<ProjectBid[]> {
-    return this.http.get<ProjectBid[]>(environment.apiBaseUrl + '/bidProjects', {
+    return this.http.get<ProjectBid[]>(environment.apiBaseUrl + '/getContractorBids', {
       params: { contractorEmail: email }
     });
   }

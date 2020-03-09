@@ -3,8 +3,6 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
-
 import { AuthenticateService } from '../shared/authenticate.service'
 
 @Component({

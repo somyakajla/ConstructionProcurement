@@ -28,8 +28,14 @@ export class AcceptBidService {
   }
 
   getProjectBidList(name: string): Observable<ProjectBid[]> {
-    return this.http.get<ProjectBid[]>(environment.apiBaseUrl + '/projects', {
+    return this.http.get<ProjectBid[]>(environment.apiBaseUrl + '/projectBidList', {
       params: { projectName: name }
+    });
+  }
+
+  acceptBid(name: string, email): Observable<any> {
+    return this.http.get<any>(environment.apiBaseUrl + '/acceptWinningBid', {
+      params: { projectName: name , contractorEmail: email}
     });
   }
 

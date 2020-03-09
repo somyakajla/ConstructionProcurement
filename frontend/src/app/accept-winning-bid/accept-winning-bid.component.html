@@ -24,12 +24,12 @@
               <tr *ngFor="let bid of projectBids">
                 <td (click) = bidDetails(bid.projectName)>{{bid.projectName}}</td>
                 <td>{{bid.contractorEmail}}</td>
-                <td>{{bid.contactName}}</td>
+                <td>{{bid.contractorName}}</td>
                 <td>{{bid.startDate}}</td>
                 <td>{{bid.endDate}}</td>
                 <td>{{bid.budget}}</td>
                 <td>{{bid.bidStatus}}</td>
-                <td> <button (click) = acceptBid(bid.projectName)>Accept Bid</button></td>
+                <td> <button (click) = acceptBid(bid.projectName,bid.contractorEmail)>Accept Bid</button></td>
               </tr>
             </tbody>
           </table>

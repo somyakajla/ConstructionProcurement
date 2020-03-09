@@ -35,7 +35,12 @@ export class AcceptWinningBidComponent implements OnInit {
   }
 
   // bid accept service class
-  acceptBid(projectName) {
+  acceptBid(projectName, email) {
+    this.acceptBidService.acceptBid(projectName, email).subscribe(projectBids => {
+      this.projectBids = projectBids
+    });
+
+
 
 
 

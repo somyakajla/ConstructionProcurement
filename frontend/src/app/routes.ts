@@ -4,6 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { CompanyComponent } from './company/company.component';
 import { ContractorComponent } from './contractor/contractor.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
+import { AcceptWinningBidComponent } from './accept-winning-bid/accept-winning-bid.component';
 
 
 export const appRoutes: Routes = [
@@ -29,5 +30,9 @@ export const appRoutes: Routes = [
     {
         path: 'update', component: UpdateProjectComponent,
         children: [{ path: '', component: UpdateProjectComponent }]
+    },
+    {
+        path: 'acceptBid', component: AcceptWinningBidComponent,
+        children: [{ path: '', component: AcceptWinningBidComponent }]
     }
 ];

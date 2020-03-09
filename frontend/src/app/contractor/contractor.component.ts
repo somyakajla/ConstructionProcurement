@@ -3,6 +3,7 @@ import { Project } from '../shared/project.model'
 import { ProjectBid } from '../shared/project-bid.model'
 import { ProjectService } from '../shared/project.service'
 import { BidOnProjectComponent } from '../bid-on-project/bid-on-project.component';
+
 import { MatDialog } from "@angular/material/dialog";
 @Component({
   selector: 'app-contractor',
@@ -39,6 +40,12 @@ export class ContractorComponent implements OnInit {
   bidOnProject(projectName) {
     localStorage.setItem('bidProjectName', projectName);
     this.dialog.open(BidOnProjectComponent);
+  }
+
+  addProgress(projectName) {
+    localStorage.setItem('bidProjectName', projectName);
+   // this.dialog.open(ProgressDetailsComponent);
+    
   }
 
 }
