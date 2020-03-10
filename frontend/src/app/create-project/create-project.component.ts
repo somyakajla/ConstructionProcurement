@@ -3,6 +3,7 @@ import { ProjectService } from '../shared/project.service'
 import { NgForm } from '@angular/forms';
 import { Project } from '../shared/project.model';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
@@ -56,28 +57,25 @@ export class CreateProjectComponent implements OnInit {
       contactName: project.contactName,
       budget:project.budget,
     };
-    
-
   }
-    resetForm(form: NgForm) {
-      this.projectService.selectedProject = {
-        projectName: '',
-        ownerEmail: '', 
-        startDate:'',
-        endDate:'',
-        city: '',
-        state: '',
-        status: '',
-        phoneNumber: '',
-        contactName:'',
-        budget:'',
-      };
-      
-      form.resetForm();
-      this.serverErrorMessages = '';
-    }
 
-
+  resetForm(form: NgForm) {
+    this.projectService.selectedProject = {
+      projectName: '',
+      ownerEmail: '', 
+      startDate:'',
+      endDate:'',
+      city: '',
+      state: '',
+      status: '',
+      phoneNumber: '',
+      contactName:'',
+      budget:'',
+    };
+    
+    form.resetForm();
+    this.serverErrorMessages = '';
+  }
 }
 
 

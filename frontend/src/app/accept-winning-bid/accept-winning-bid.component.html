@@ -1,37 +1,74 @@
-<div class="panel panel-primary">
-        <div class="panel-heading">
-          <table>
-            <tr>
-              <td><h2>Bid List to Accept</h2></td>
-            </tr>
-          </table>
-        </div>
-        <div class="panel-body">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Project Name</th>
-                <th>Contrctor Email</th>
-                <th>Contact Person</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Budget</th>
-                <th>Bid Status</th>
-                <th>Accept Bid</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let bid of projectBids">
-                <td (click) = bidDetails(bid.projectName)>{{bid.projectName}}</td>
-                <td>{{bid.contractorEmail}}</td>
-                <td>{{bid.contractorName}}</td>
-                <td>{{bid.startDate}}</td>
-                <td>{{bid.endDate}}</td>
-                <td>{{bid.budget}}</td>
-                <td>{{bid.bidStatus}}</td>
-                <td> <button (click) = acceptBid(bid.projectName,bid.contractorEmail)>Accept Bid</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<h2>Accept Bid </h2>
+  <div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search">
+      </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource">
+      <!-- ProjectName Column -->
+      <ng-container matColumnDef="projectName">
+        <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.projectName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contractorEmail">
+          <mat-header-cell *matHeaderCellDef> Contractor Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.contractorEmail}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="contractorName">
+            <mat-header-cell *matHeaderCellDef> Contact Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.contractorName}} </mat-cell>
+          </ng-container>
+  
+      <!-- StartDate Column -->
+      <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.startDate}} </mat-cell>
+      </ng-container>
+  
+      <!-- EndDate Column -->
+      <ng-container matColumnDef="endDate">
+        <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.endDate}} </mat-cell>
+      </ng-container>
+
+      <!-- ProjectStatus Column -->
+      <ng-container matColumnDef="budget">
+          <mat-header-cell *matHeaderCellDef> Budget </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.budget}} </mat-cell>
+        </ng-container>
+
+      <!-- ProjectStatus Column -->
+      <ng-container matColumnDef="bidStatus">
+          <mat-header-cell *matHeaderCellDef> Bid Status </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.bidStatus}} </mat-cell>
+        </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        
+        <td mat-cell *matCellDef="let element" > 
+            <ng-container *ngIf="element.status === 'open'">
+              <button (click) = acceptBid(element.projectName,element.contractorEmail) mat-raised-button color="primary" >AcceptBid</button>
+            </ng-container>
+        </td>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+

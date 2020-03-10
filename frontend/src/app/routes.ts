@@ -5,11 +5,14 @@ import { CompanyComponent } from './company/company.component';
 import { ContractorComponent } from './contractor/contractor.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { AcceptWinningBidComponent } from './accept-winning-bid/accept-winning-bid.component';
+import { ProgressTimelineComponent} from './progress-timeline/progress-timeline.component'
+import { AuthGuard } from './helper/auth.guard';
+
 
 
 export const appRoutes: Routes = [
     {
-        path: '', redirectTo: '/login', pathMatch: 'full'
+        path: '', redirectTo: '/login', pathMatch: 'full', canActivate: [AuthGuard]
     },
     {
         path: 'login', component: LoginComponent,
@@ -27,12 +30,19 @@ export const appRoutes: Routes = [
         path: 'contractor', component: ContractorComponent,
         children: [{ path: '', component: CompanyComponent }]
     },
-    {
-        path: 'update', component: UpdateProjectComponent,
-        children: [{ path: '', component: UpdateProjectComponent }]
-    },
+    // {
+    //     path: 'update', component: UpdateProjectComponent,
+    //     children: [{ path: '', component: UpdateProjectComponent }]
+    // },
     {
         path: 'acceptBid', component: AcceptWinningBidComponent,
         children: [{ path: '', component: AcceptWinningBidComponent }]
-    }
+    },
+    {
+        path: 'progressTimeline', component: ProgressTimelineComponent,
+        children: [{ path: '', component: ProgressTimelineComponent }]
+    },
+    
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];

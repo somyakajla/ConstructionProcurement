@@ -1,8 +1,14 @@
-<h2>Project List</h2>
-  <button (click) = addProject() mat-raised-button color="primary">
-    <mat-icon aria-label="Add Project">add</mat-icon>
-    Add Project
-  </button>
+<div> <h2>Project List
+  <div style="padding-left: 90%;"> 
+      <button (click) = addProject() mat-raised-button color="primary" >
+          <mat-icon aria-label="Add Project">add</mat-icon>
+          Add Project
+        </button>
+  </div>
+   
+  
+</h2>
+</div>
   <div class="example-container mat-elevation-z8">
     <div class="example-header">
       <mat-form-field>
@@ -12,25 +18,25 @@
     <mat-table #table [dataSource]="dataSource">
       <!-- ProjectName Column -->
       <ng-container matColumnDef="projectName">
-        <mat-header-cell *matHeaderCellDef> ProjectName </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.projectName}} </mat-cell>
       </ng-container>
   
       <!-- ProjectStatus Column -->
       <ng-container matColumnDef="projectStatus">
-        <mat-header-cell *matHeaderCellDef> ProjectStatus </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Project Status </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
       </ng-container>
   
       <!-- StartDate Column -->
       <ng-container matColumnDef="startDate">
-        <mat-header-cell *matHeaderCellDef> StartDate </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.startDate}} </mat-cell>
       </ng-container>
   
       <!-- EndDate Column -->
       <ng-container matColumnDef="endDate">
-        <mat-header-cell *matHeaderCellDef> EndDate </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.endDate}} </mat-cell>
       </ng-container>
 
@@ -41,9 +47,9 @@
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button> 
           <button (click) = accept(element.projectName) mat-raised-button color="primary" >AcceptBid</button>
-          <button (click) = delete(element.projectName) mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="primary">
+          <!-- <button (click) = delete(element.projectName) mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="primary">
             <mat-icon  aria-label="Delete">delete</mat-icon>
-          </button>
+          </button> -->
         </td>
       </ng-container>
   
@@ -53,6 +59,3 @@
   </div>
   
   
-  <!-- Copyright 2018 Google Inc. All Rights Reserved.
-      Use of this source code is governed by an MIT-style license that
-      can be found in the LICENSE file at http://angular.io/license -->

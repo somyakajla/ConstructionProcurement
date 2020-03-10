@@ -1,4 +1,140 @@
-<div class="panel panel-primary">
+<div>
+  <h2>
+    
+  </h2>
+</div>
+<h2>Open Project For Bidding</h2>
+
+  <div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search">
+      </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="projectOpenList">
+      <!-- ProjectName Column -->
+      <ng-container matColumnDef="projectName">
+        <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.projectName}} </mat-cell>
+      </ng-container>
+  
+      <!-- ProjectStatus Column -->
+      <ng-container matColumnDef="projectStatus">
+        <mat-header-cell *matHeaderCellDef> Project Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      </ng-container>
+  
+      <!-- StartDate Column -->
+      <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.startDate}} </mat-cell>
+      </ng-container>
+  
+      <!-- EndDate Column -->
+      <ng-container matColumnDef="endDate">
+        <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.endDate}} </mat-cell>
+      </ng-container>
+
+      <!-- EndDate Column -->
+      <ng-container matColumnDef="ownerEmail">
+        <mat-header-cell *matHeaderCellDef> Owner Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ownerEmail}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Bid On Project </th>
+        <td mat-cell *matCellDef="let element">
+          <button (click) = bidOnProject(element.projectName) mat-raised-button color="primary" >Bid</button>
+        </td>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedOpenListColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedOpenListColumns;"></mat-row>
+    </mat-table>
+  </div>
+  
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
+<div>
+  <h2>
+
+  </h2>
+</div>
+
+      <h2>Bidding List</h2>
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilterOnBiddingList($event.target.value)" placeholder="search">
+          </mat-form-field>
+        </div>
+        <mat-table #table [dataSource]="projectBiddingList">
+          <!-- ProjectName Column -->
+          <ng-container matColumnDef="projectName">
+            <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.projectName}} </mat-cell>
+          </ng-container>
+      
+          <!-- ProjectStatus Column -->
+          <ng-container matColumnDef="projectBiddingStatus">
+            <mat-header-cell *matHeaderCellDef> Bidding Status </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.bidStatus}} </mat-cell>
+          </ng-container>
+
+          <!-- StartDate Column -->
+          <ng-container matColumnDef="startDate">
+            <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.startDate}} </mat-cell>
+          </ng-container>
+      
+          <!-- EndDate Column -->
+          <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.endDate}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="contractorEmail">
+            <mat-header-cell *matHeaderCellDef> Contractor Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.contractorEmail}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef> Add Progress Details </th>
+            <td mat-cell *matCellDef="let element">
+              <button (click) = addProgress(element.projectName) mat-raised-button color="primary" >Add Progress</button>
+            </td>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedBiddingListColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedBiddingListColumns;"></mat-row>
+        </mat-table>
+      </div>
+      
+      
+      <!-- Copyright 2018 Google Inc. All Rights Reserved.
+          Use of this source code is governed by an MIT-style license that
+          can be found in the LICENSE file at http://angular.io/license -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="panel panel-primary">
   <div class="panel-heading">
     <h2>Open Project For Bidding </h2>
   </div>
@@ -59,4 +195,4 @@
     </tbody>
   </table>
 </div>
-</div>
+</div> -->

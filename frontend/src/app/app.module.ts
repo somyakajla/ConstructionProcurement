@@ -16,6 +16,8 @@ import { BidOnProjectComponent } from './bid-on-project/bid-on-project.component
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { AcceptWinningBidComponent } from './accept-winning-bid/accept-winning-bid.component';
+import { ProgressTimelineComponent } from './progress-timeline/progress-timeline.component';
+import { AddProgressComponent } from './add-progress/add-progress.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { AcceptWinningBidComponent } from './accept-winning-bid/accept-winning-b
     CreateProjectComponent,
     UpdateProjectComponent,
     AcceptWinningBidComponent,
+    ProgressTimelineComponent,
+    AddProgressComponent,
   ],
   imports: [
     BrowserModule,

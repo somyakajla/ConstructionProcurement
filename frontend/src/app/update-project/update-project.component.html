@@ -1,7 +1,7 @@
 <h2>Update Project</h2>
 <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
         <input type="text" #projectName="ngModel" [(ngModel)]="project.projectName" name="projectName" placeholder="projectName"
-        required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !projectName.valid }">
+        required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !projectName.valid }" disabled>
         <div *ngIf="signUpForm.submitted && !projectName.valid">
           <label class="validation-message">This field is required.</label>
         </div>
@@ -46,7 +46,7 @@
         <label class="validation-message">This field is required.</label>
       </div>
       <input type="submit" value="Submit" >
-      <input type="submit" value="Cancle" >
+      <input type="button" (click) = close() value="Cancle"  id=hello> 
     </form>
     
     <!-- Success message -->

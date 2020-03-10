@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Project } from './project.model';
 import { ProjectBid } from './project-bid.model';
+import {ProgressTimeline} from '../shared/progress-timeline.model'
 
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -36,6 +37,13 @@ export class ProjectService {
     bidStatus: ''
   };
 
+  selectedProgress: ProgressTimeline = {
+    projectName: '',
+    contractorEmail: '',
+    currentTime:'',
+    description: ''
+  };
+
 
   constructor(private http: HttpClient) { }
 
@@ -69,21 +77,32 @@ export class ProjectService {
 
   // bid on project
   postBidProject(projectBid: ProjectBid) {
-
     return this.http.post(environment.apiBaseUrl + '/bidProject', projectBid);
   }
 
 
   deleteProject(name) {
-    alert('one');
     return this.http.delete(environment.apiBaseUrl + '/deleteProject',
       {
         params: { projectName: name }
       });
   }
 
-  updateProject(project: Project) {
-    alert('hello 1111'+project.projectName);
-    return this.http.post(environment.apiBaseUrl + '/updateProject', project);
+  updateProject(project: Project, pName : String) {
+    return this.http.put(environment.apiBaseUrl + '/updateProject', {
+      params : { projectName : pName},
+      body: project
+    });
+  }
+
+  getProgressTimelineList(pName: string): Observable<ProgressTimeline[]> {
+    return this.http.get<ProgressTimeline[]>(environment.apiBaseUrl + '/getProjectTimelineList', {
+      params: { projectName: pName }
+    });
+  }
+
+  // bid on project
+  postProgressTimeline(progressTimeline: ProgressTimeline) {
+    return this.http.post(environment.apiBaseUrl + '/createProgressTimeline', progressTimeline);
   }
 }

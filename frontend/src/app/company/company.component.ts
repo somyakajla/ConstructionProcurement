@@ -6,7 +6,8 @@ import { CreateProjectComponent } from '../create-project/create-project.compone
 import { UpdateProjectComponent } from '../update-project/update-project.component';
 import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
-import {DataSource} from '@angular/cdk/collections';
+import { AuthenticateService} from '../shared/authenticate.service'
+import { LoggedInUser } from '../shared/user.model';
 
 @Component({
   selector: 'app-company',
@@ -16,12 +17,19 @@ import {DataSource} from '@angular/cdk/collections';
 
 export class CompanyComponent implements OnInit {
   project: Project;
+  currentUser: LoggedInUser;
   displayedColumns = ['projectName', 'projectStatus', 'startDate', 'endDate', 'actions'];
   dataSource: MatTableDataSource<Project>;
 
   constructor(public projectService: ProjectService,
     private dialog: MatDialog,
-    private router: Router) { }
+    private authenticateService: AuthenticateService,
+    private router: Router) { 
+      this.authenticateService.currentUser.subscribe(x => this.currentUser = x);
+      if(! this.currentUser) {
+        this.router.navigate(['/login']);
+      }
+    }
 
   ngOnInit(): void {
     this.userProjectList();
@@ -55,15 +63,11 @@ export class CompanyComponent implements OnInit {
   }
 
   update(name) {
-    //localStorage.setItem('projectName', name);
-    //alert(name);
-    var pr: Project;
-    this.projectService.getProject(name).subscribe(data => {
-        pr = data;
-        localStorage.setItem('updateProjectObject', JSON.stringify(data));
-    });
-
-    this.dialog.open(UpdateProjectComponent);
+    let dialogRef = this.dialog.open(UpdateProjectComponent, {
+      data: {
+        projectName: name 
+      }});
+      dialogRef.afterClosed().subscribe(result => this.router.navigate(['/company']));
   }
 
   accept(projectName) {
