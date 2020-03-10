@@ -19,7 +19,7 @@ module.exports.createProject = (req, res, next) => {
     project.contactName = req.body.contactName;
     project.phoneNumber = req.body.phoneNumber;
     project.budget = req.body.budget;
-    project.status = 'open';
+    project.status = 'applied';
     project.save((err) => {
         if (!err)
             return res.status(200).json({ status: true, message: 'project is created' });
@@ -81,42 +81,42 @@ module.exports.getProjects = (req, res, next) => {
     );
 }
 
-
-
 /**
  * update project
  * /updateProject/{projectId}
  */
 module.exports.updateProject = (req, res, next) => {
-    console.log("********inside update project ******** " + req.body.projectName);
+    console.log("********inside update project ******** " + req.query.projectName);
     if (!req.body) {
         return res.status(400).send({
             message: "project content can not be empty"
         });
     }
-
-    Project.findOne({projectName: req.query.projectName},  (err, project) =>{
-        if (err)
-            res.send(err);
-        project.state = req.body.state;
-        project.ownerEmail = req.body.ownerEmail;
-        project.startDate = req.body.startDate;
-        project.endDate = req.body.endDate;
-        project.city = req.body.city;
-        project.state = req.body.state;
-        project.contactName = req.body.contactName;
-        project.phoneNumber = req.body.phoneNumber;
-        project.budget = req.body.budget;
-        project.status = req.body.status;
-        project.save(function (err) {
-            if (err)
-                res.json(err);
-            res.json({
-                message: 'project Info updated',
-                data: project
+    var options = { multi: false };
+    var query = { projectName: req.query.projectName };
+    var x = {budget : 765, state: req.body.status, ownerEmail: req.body.ownerEmail,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        city: req.body.city,
+        state: req.body.state,
+        contactName: req.body.contactName,
+        phoneNumber: req.body.phoneNumber,
+        budget: req.body.budget,
+        status: req.body.status
+    }
+    try {
+        Project.update(query, x, options,
+            function (err) {
+                if (err)
+                    return res.json(err);
             });
-        });
-    });
+            return res.json({message: 'project updated'});
+    } 
+    catch(e)
+    {
+        return res.json(e);
+    }
+    
 };
 
 // Handle delete contact

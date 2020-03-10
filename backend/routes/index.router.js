@@ -4,6 +4,7 @@ const router = express.Router();
 const ctrlUser = require('../controllers/user.controller');
 const ctrlProject = require('../controllers/project.controller');
 const ctrlProjectBidding = require('../controllers/projectBidding.controller');
+const ctrlProgressTimeline = require('../controllers/progressTimeline.controller');
 
 const jwtHelper = require('../config/jwtHelper');
 
@@ -30,10 +31,17 @@ router.delete('/deleteProject', ctrlProject.deleteProject);
 //  * Project bidding routes
 //  */
 router.post('/bidProject', ctrlProjectBidding.bidProject);
-router.get('/bidProject', ctrlProjectBidding.getBidProject);
-router.get('/bidProjects', ctrlProjectBidding.getBidProjects);
-router.put('/updateBidProject', ctrlProjectBidding.updateBidProject);
-router.delete('/deleteBidProject', ctrlProjectBidding.deleteBidProject);
+router.get('/getbidProject', ctrlProjectBidding.getBidProject);
+router.get('/projectBidList', ctrlProjectBidding.getprojectBidlist);
+router.get('/acceptWinningBid', ctrlProjectBidding.acceptWinningBid);
+router.get('/getContractorBids', ctrlProjectBidding.getContractorBids);
+router.put('/updateProjectBid', ctrlProjectBidding.updateProjectBid);
+router.delete('/deleteProjectBid', ctrlProjectBidding.deleteProjectBid);
 
+/**
+ * getProgressList
+ */
+router.post('/createProgressTimeline', ctrlProgressTimeline.ProgressTimeline);
+router.get('/getProjectTimelineList', ctrlProgressTimeline.getprojectTimelineList);
 
 module.exports = router;

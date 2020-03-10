@@ -13,3 +13,4 @@ mongoose.connect(process.env.MONGODB_URI, options, (err) => {
 require('./user.model');
 require('./project.model');
 require('./projectBid.model');
+require('./progressTimeline.model');
