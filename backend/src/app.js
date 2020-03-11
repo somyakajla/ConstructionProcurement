@@ -17,6 +17,11 @@ app.use(cors());
 app.use(passport.initialize());
 app.use('/api', rtsIndex);
 
+// define a route handler for the default home page
+app.get( "/", ( req, res ) => {
+    res.send( "Hello, world!" );
+} );
+
 // error handler
 app.use((err, req, res, next) => {
     if (err.name === 'ValidationError') {
