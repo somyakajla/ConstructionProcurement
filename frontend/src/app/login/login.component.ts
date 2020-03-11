@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticateService } from '../shared/authenticate.service'
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
+    private dialog: MatDialog,
     private formBuilder: FormBuilder,
     public authenticateService: AuthenticateService,
     private router: Router,
@@ -55,5 +57,9 @@ export class LoginComponent implements OnInit {
             error => {
                 this.loading = false;
             });
+  }
+
+  registerUser() {
+    this.dialog.open(RegisterComponent);
   }
 }
