@@ -19,7 +19,7 @@ module.exports.createProject = (req, res, next) => {
     project.contactName = req.body.contactName;
     project.phoneNumber = req.body.phoneNumber;
     project.budget = req.body.budget;
-    project.status = 'applied';
+    project.status = req.body.status;
     project.save((err) => {
         if (!err)
             return res.status(200).json({ status: true, message: 'project is created' });

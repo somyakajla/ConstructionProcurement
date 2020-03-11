@@ -1,18 +1,22 @@
+<span class="heading">Add Progress</span>
 <form name='certform' #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
-        <input type="text" #description="ngModel" [(ngModel)]="projectService.selectedProgress.description" name="description" placeholder="description" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !description.valid }">
-        <div *ngIf="signUpForm.submitted && !description.valid">
-          <label class="validation-message">This field is required.</label>
-        </div>
-        <div style="align-items: center;">
-            <input type="submit" value="Add Progress" >
-        </div>  
-    </form> 
-    
-    <div class="success" *ngIf="showSucessMessage">
-      Saved successfully
-    </div>
-    
-    <!-- Error message -->
-    <div class="alert" *ngIf="serverErrorMessages">
-      {{serverErrorMessages}}
-    </div>
+  <!-- <input type="text" #description="ngModel" [(ngModel)]="projectService.selectedProgress.description" name="description" placeholder="description" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !description.valid }"> -->
+  <textarea [(ngModel)]="projectService.selectedProgress.description" name="description" #description="ngModel" rows="10" cols="70" wrap="soft" placeholder="description" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !description.valid }"> </textarea>
+
+  <div *ngIf="signUpForm.submitted && !description.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  <div style="align-items: center;">
+      <input type="submit" value="Add Progress" >
+      <input type="button" (click)= close() value="Cancel" class="display">
+  </div>  
+</form> 
+
+<div class="success" *ngIf="showSucessMessage">
+Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+{{serverErrorMessages}}
+</div>

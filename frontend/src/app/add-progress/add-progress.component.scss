@@ -28,7 +28,10 @@ h2 {
   color: #cccccc;
 }
 
-
+input.break {
+    word-wrap: break-word;
+    word-break: break-all;
+}
 
 /* STRUCTURE */
 
@@ -84,7 +87,7 @@ h2.active {
 
 input[type=button], input[type=submit], input[type=reset]  {
   cursor: pointer;
-  background-color: #56baed;
+  background-color: #007BFF;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -141,6 +144,7 @@ input[type=text],input[type=password] {
   transition: all 0.5s ease-in-out;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
+  overflow-wrap : break-word;
 }
 
 input[type=text]:focus,input[type=password]:focus {
@@ -293,4 +297,14 @@ label.validation-message{
   background-color:#249424; /* Green */
   color: white;
   margin-bottom: 15px;
+}
+.display {
+  display: inline;
+  margin: 20px;
+  background-color: #007BFF;
+  color: white;
+}
+.heading{
+  font-size: 18px;    
+  padding-bottom: 10px;;
 }

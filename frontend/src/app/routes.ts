@@ -3,7 +3,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CompanyComponent } from './company/company.component';
 import { ContractorComponent } from './contractor/contractor.component';
-import { UpdateProjectComponent } from './update-project/update-project.component';
 import { AcceptWinningBidComponent } from './accept-winning-bid/accept-winning-bid.component';
 import { ProgressTimelineComponent} from './progress-timeline/progress-timeline.component'
 import { AuthGuard } from './helper/auth.guard';
@@ -30,10 +29,6 @@ export const appRoutes: Routes = [
         path: 'contractor', component: ContractorComponent,
         children: [{ path: '', component: CompanyComponent }]
     },
-    // {
-    //     path: 'update', component: UpdateProjectComponent,
-    //     children: [{ path: '', component: UpdateProjectComponent }]
-    // },
     {
         path: 'acceptBid', component: AcceptWinningBidComponent,
         children: [{ path: '', component: AcceptWinningBidComponent }]

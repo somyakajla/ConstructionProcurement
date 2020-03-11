@@ -27,9 +27,12 @@ export class ContractorComponent implements OnInit {
     private authenticateService: AuthenticateService,
   ) { 
     this.authenticateService.currentUser.subscribe(x => this.currentUser = x);
-      if(! this.currentUser) {
+      if(! this.currentUser && this.currentUser.type !== 'contractor') {
         this.router.navigate(['/login']);
-  }
+    }
+    else if(this.currentUser.type !== 'contractor') {
+      this.router.navigate(['/company']);
+    }
 }
 
   ngOnInit(): void {

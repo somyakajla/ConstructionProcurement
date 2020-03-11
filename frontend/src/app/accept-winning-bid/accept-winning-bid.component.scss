@@ -1,33 +1,59 @@
 /* Structure */
 .example-container {
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
-  }
-  
-  .example-header {
-    min-height: 64px;
-    padding: 8px 24px 0;
-  }
-  
-  .mat-form-field {
-    font-size: 16px;
-    width: 100%;
-  }
-  
-  .mat-table {
-    overflow: auto;
-    max-height: 500px;
-  }
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
 
-  .mat-row, .mat-header-row {
-    justify-content: left;
-    flex: 0 0 200px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: lightgrey;
-  }
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
 
-  table {
-    width: 100%;
-  }
+.mat-form-field {
+  font-size: 16px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-row, .mat-header-row {
+  justify-content: left;
+  flex: 0 0 200px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: lightgrey;
+}
+
+.mat-header-cell, .mat-cell {
+  width : 20%;
+}
+
+.mat-header-cell {
+  font-size : 18px;
+  color : black;
+}
+
+table {
+  width: 100%;
+}
+
+.display {
+  display: inline;
+  margin: 20px;
+  background-color: #007BFF;
+  color: white;
+}
+
+.heading{
+  font-size: 30px;    
+  margin: 20px;
+}
+
+.search-field {
+width: 25%;
+font-size: 20px;
+}

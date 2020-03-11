@@ -1,3 +1,4 @@
+<h2 class="heading">Bid on Project</h2> 
 <form name='certform' #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
     <input type="text" #budget="ngModel" [(ngModel)]="projectService.selectedProjectBid.budget" name="budget" placeholder="Budget" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !budget.valid }">
     <div *ngIf="signUpForm.submitted && !budget.valid">
@@ -16,9 +17,10 @@
     <input type="text" #city="ngModel" [(ngModel)]="projectService.selectedProjectBid.city" name="city" placeholder="City">
     <input type="text" #state="ngModel" [(ngModel)]="projectService.selectedProjectBid.state" name="state" placeholder="State">
 
-    <div style="align-items: center;">
+    <!-- <div style="align-items: center;"> -->
         <input type="submit" value="Bid On Project" >
-    </div>  
+        <input type="button" (click)= close() value="Cancel" class="display">
+    <!-- </div>   -->
 </form> 
 
 <div class="success" *ngIf="showSucessMessage">

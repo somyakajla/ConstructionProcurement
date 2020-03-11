@@ -3,8 +3,6 @@
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  height: 400px;
-  overflow: auto;
 }
 
 .example-header {
@@ -13,13 +11,13 @@
 }
 
 .mat-form-field {
-  font-size: 20px;
+  font-size: 16px;
   width: 100%;
 }
 
 .mat-table {
-  overflow: scroll;
-  max-height: 40%;
+  overflow: auto;
+  max-height: 500px;
 }
 
 .mat-row, .mat-header-row {
@@ -28,9 +26,34 @@
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: lightgrey;
-  
+}
+
+.mat-header-cell, .mat-cell {
+  width : 20%;
+}
+
+.mat-header-cell {
+  font-size : 18px;
+  color : black;
 }
 
 table {
   width: 100%;
+}
+
+.display {
+  display: inline;
+  margin: 20px;
+  background-color: #007BFF;
+  color: white;
+}
+
+.heading{
+  font-size: 30px;    
+  margin: 20px;
+}
+
+.search-field {
+width: 25%;
+font-size: 20px;
 }

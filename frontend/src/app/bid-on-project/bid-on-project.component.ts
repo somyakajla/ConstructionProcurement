@@ -3,6 +3,7 @@ import { ProjectService } from '../shared/project.service'
 import { NgForm } from '@angular/forms';
 import { from } from 'rxjs';
 import { ProjectBid } from '../shared/project-bid.model';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-bid-on-project',
@@ -13,7 +14,8 @@ export class BidOnProjectComponent implements OnInit {
   showSucessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(public projectService: ProjectService) { }
+  constructor(public projectService: ProjectService,
+    private dialogRef: MatDialogRef<BidOnProjectComponent>,) { }
 
   ngOnInit(): void {
   }
@@ -22,10 +24,10 @@ export class BidOnProjectComponent implements OnInit {
     var f = this.fillCompleteForm(form.value);
     this.projectService.postBidProject(f).subscribe(
       res => {
-        window.close();
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.resetForm(form);
+        this.close();
       
       },
       err => {
@@ -75,6 +77,10 @@ export class BidOnProjectComponent implements OnInit {
       
       form.resetForm();
       this.serverErrorMessages = '';
+    }
+
+    close() {
+      this.dialogRef.close();
     }
 
 

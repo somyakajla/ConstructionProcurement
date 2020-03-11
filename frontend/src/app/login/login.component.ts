@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
-              if(this.authenticateService.currentUserValue.type === "Company")
+              if(this.authenticateService.currentUserValue.type === "owner")
                 this.router.navigate(['/company']);
               else
                 this.router.navigate(['/contractor']);

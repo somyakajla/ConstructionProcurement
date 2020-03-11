@@ -51,4 +51,3 @@ export class ProgressDetailsComponent {
     this.side = this.side === 'left' ? 'right' : 'left';
   }
 }
-

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Project } from './project.model';
 import { ProjectBid } from './project-bid.model';
-import {ProgressTimeline} from '../shared/progress-timeline.model'
-
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ProgressTimeline } from '../shared/progress-timeline.model'
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -40,7 +39,7 @@ export class ProjectService {
   selectedProgress: ProgressTimeline = {
     projectName: '',
     contractorEmail: '',
-    currentTime:'',
+    currentTime: '',
     description: ''
   };
 
@@ -80,7 +79,6 @@ export class ProjectService {
     return this.http.post(environment.apiBaseUrl + '/bidProject', projectBid);
   }
 
-
   deleteProject(name) {
     return this.http.delete(environment.apiBaseUrl + '/deleteProject',
       {
@@ -88,9 +86,9 @@ export class ProjectService {
       });
   }
 
-  updateProject(project: Project, pName : String) {
+  updateProject(project: Project, pName: String) {
     return this.http.put(environment.apiBaseUrl + '/updateProject', {
-      params : { projectName : pName},
+      params: { projectName: pName },
       body: project
     });
   }
@@ -105,4 +103,5 @@ export class ProjectService {
   postProgressTimeline(progressTimeline: ProgressTimeline) {
     return this.http.post(environment.apiBaseUrl + '/createProgressTimeline', progressTimeline);
   }
+
 }

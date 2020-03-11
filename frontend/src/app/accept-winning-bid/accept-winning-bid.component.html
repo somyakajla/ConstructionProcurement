@@ -1,7 +1,7 @@
-<h2>Accept Bid </h2>
+<h2 class="heading">Accept Bid </h2>
   <div class="example-container mat-elevation-z8">
     <div class="example-header">
-      <mat-form-field>
+      <mat-form-field class="search-field">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search">
       </mat-form-field>
     </div>
@@ -46,29 +46,16 @@
           <mat-cell *matCellDef="let element"> {{element.bidStatus}} </mat-cell>
         </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        
-        <td mat-cell *matCellDef="let element" > 
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
             <ng-container *ngIf="element.status === 'open'">
-              <button (click) = acceptBid(element.projectName,element.contractorEmail) mat-raised-button color="primary" >AcceptBid</button>
+              <button class="display" (click)=acceptBid(element.projectName,element.contractorEmail) mat-raised-button >AcceptBid</button>
             </ng-container>
-        </td>
-      </ng-container>
+          </mat-cell>
+        </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-

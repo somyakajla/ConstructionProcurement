@@ -1,19 +1,22 @@
 <div>
-    <button (click) = addProgress() mat-raised-button color="primary">
-        Add Progress
-      </button>
+  <button (click)=addProgress() mat-raised-button class="display">
+    Add Progress
+  </button>
 </div>
 <link href='//fonts.googleapis.com/css?family=Roboto:200,400,600' rel='stylesheet' type='text/css'>
 <div class="history-tl-container">
   <ul class="tl">
     <li class="tl-item" *ngFor="let openlist of progressList">
-      <div class="timestamp">
-       {{openlist.currentTime}}
+      <div>
+        <span class="timestamp">
+          {{openlist.currentTime}}
+        </span>
+        <div class="item-title">
+          {{openlist.description}}
+        </div>
       </div>
-      <div class="item-title"> {{openlist.description}}</div>
-      <div class="item-detail"> {{openlist.projectName}}</div>
     </li>
-    
+
   </ul>
 
 </div>

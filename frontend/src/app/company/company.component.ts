@@ -5,8 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateProjectComponent } from '../create-project/create-project.component'
 import { UpdateProjectComponent } from '../update-project/update-project.component';
 import { Router } from '@angular/router';
-import {MatTableDataSource} from '@angular/material/table';
-import { AuthenticateService} from '../shared/authenticate.service'
+import { MatTableDataSource } from '@angular/material/table';
+import { AuthenticateService } from '../shared/authenticate.service'
 import { LoggedInUser } from '../shared/user.model';
 
 @Component({
@@ -24,17 +24,20 @@ export class CompanyComponent implements OnInit {
   constructor(public projectService: ProjectService,
     private dialog: MatDialog,
     private authenticateService: AuthenticateService,
-    private router: Router) { 
-      this.authenticateService.currentUser.subscribe(x => this.currentUser = x);
-      if(! this.currentUser) {
-        this.router.navigate(['/login']);
-      }
+    private router: Router) {
+    this.authenticateService.currentUser.subscribe(x => this.currentUser = x);
+    if (!this.currentUser ) {
+      this.router.navigate(['/login']);
     }
+    else if(this.currentUser.type !== 'owner') {
+      this.router.navigate(['/contractor']);
+    }
+  }
 
   ngOnInit(): void {
     this.userProjectList();
   }
-  
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -65,9 +68,10 @@ export class CompanyComponent implements OnInit {
   update(name) {
     let dialogRef = this.dialog.open(UpdateProjectComponent, {
       data: {
-        projectName: name 
-      }});
-      dialogRef.afterClosed().subscribe(result => this.router.navigate(['/company']));
+        projectName: name
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => this.router.navigate(['/company']));
   }
 
   accept(projectName) {
