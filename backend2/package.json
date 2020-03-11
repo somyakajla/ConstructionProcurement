@@ -2,7 +2,7 @@
   "name": "backend2",
   "version": "1.0.0",
   "description": "API for a construction project bidding ",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node .",
     "build": "tsc",
