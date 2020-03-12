@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
-
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-update-project',
@@ -27,7 +27,6 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //alert(this.data.projectName);
     this.projectService.getProject(this.data.projectName).subscribe(data => {
       this.project = data;
     });
@@ -74,6 +73,6 @@ export class UpdateProjectComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+    window.location.href = environment.apiFrontEndUrl+'/company';
   }
-
 }

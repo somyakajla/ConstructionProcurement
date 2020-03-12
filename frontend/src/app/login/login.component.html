@@ -24,5 +24,14 @@
             <a (click) = registerUser() class="btn btn-link">Register</a>
         </div>
     </form>
-
 </div>
+
+ <!-- Success message -->
+ <div class="success" *ngIf="showSucessMessage">
+    Saved successfully
+  </div>
+  
+  <!-- Error message -->
+  <div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div>

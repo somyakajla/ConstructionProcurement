@@ -20,6 +20,7 @@ export class ContractorComponent implements OnInit {
   displayedBiddingListColumns = ['projectName', 'projectBiddingStatus', 'startDate', 'endDate', 'contractorEmail', 'progress'];
   projectOpenList: MatTableDataSource<Project>;
   projectBiddingList: MatTableDataSource<ProjectBid>;
+  projectBidList: ProjectBid[];
 
   constructor(public projectService: ProjectService,
     private dialog: MatDialog,
@@ -56,12 +57,22 @@ export class ContractorComponent implements OnInit {
     var item = JSON.parse(localStorage.getItem("currentUser"));
     this.projectService.getProjectBiddingList(item.email).subscribe(ProjectBid => {
       this.projectBiddingList = new MatTableDataSource(ProjectBid);
+      this.projectBidList = ProjectBid;
     });
   }
 
   getProjectOpenList() {
+    var project : Project[] = []
     var item = JSON.parse(localStorage.getItem("currentUser"));
     this.projectService.getProjectOpenList().subscribe(projects => {
+      for( var i=projects.length - 1; i>=0; i--) {
+        for( var j=0; j<this.projectBidList.length; j++){
+            if(projects[i] && (projects[i].projectName === this.projectBidList[j].projectName)){
+              projects.splice(i, 1);
+           }
+         }
+      }
+      
       this.projectOpenList = new MatTableDataSource(projects);
     });
   }

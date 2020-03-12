@@ -63,6 +63,7 @@ export class CompanyComponent implements OnInit {
 
   addProject() {
     this.dialog.open(CreateProjectComponent);
+    this.ngOnInit();
   }
 
   update(name) {

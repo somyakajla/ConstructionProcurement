@@ -39,10 +39,12 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button class="display" (click)=accept(element.projectName) mat-raised-button >Accept Bid</button>
-        <button (click)=update(element.projectName) mat-icon-button matTooltip="Click to Edit" class="display">
-          <mat-icon aria-label="Edit">edit</mat-icon>
-        </button>
+        <ng-container *ngIf="element.status === 'open'">
+          <button class="display" (click)=accept(element.projectName) mat-raised-button >Accept Bid</button>
+          <button (click)=update(element.projectName) mat-icon-button matTooltip="Click to Edit" class="display">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+         </ng-container> 
       </mat-cell>
     </ng-container>
 

@@ -129,7 +129,7 @@ input[type=submit]:disabled{
   color: #7d7d7d;
 }
 
-input[type=text],input[type=password] {
+input[type=text],input[type=password], mat-form-field {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;

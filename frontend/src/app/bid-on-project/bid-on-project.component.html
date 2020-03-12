@@ -1,17 +1,21 @@
 <h2 class="heading">Bid on Project</h2> 
 <form name='certform' #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
     <input type="text" #budget="ngModel" [(ngModel)]="projectService.selectedProjectBid.budget" name="budget" placeholder="Budget" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !budget.valid }">
-    <div *ngIf="signUpForm.submitted && !budget.valid">
+    <span *ngIf="signUpForm.submitted && !budget.valid">
       <label class="validation-message">This field is required.</label>
-    </div>
-    <input type="text" #startDate="ngModel" [(ngModel)]="projectService.selectedProjectBid.startDate" name="startDate" placeholder="Start Date" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !startDate.valid }">
-    <div *ngIf="signUpForm.submitted && !startDate.valid">
-        <label class="validation-message">This field is required.</label>
-      </div>
-    <input type="text" #endDate="ngModel" [(ngModel)]="projectService.selectedProjectBid.endDate" name="endDate" placeholder="End Date" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !endDate.valid }">
-    <div *ngIf="signUpForm.submitted && !endDate.valid">
-        <label class="validation-message">This field is required.</label>
-      </div>
+    </span>
+    <mat-form-field style="height: 70px;">
+      <input matInput [matDatepicker]="picker" #startDate="ngModel" [(ngModel)]="projectService.selectedProjectBid.startDate" name="startDate" placeholder="startDate"
+      required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field style="height: 70px;">
+      <input matInput [matDatepicker]="picker1"  #endDate="ngModel" [(ngModel)]="projectService.selectedProjectBid.endDate" name="endDate" placeholder="endDate"
+      required>
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
     <input type="text" #Location="ngModel" [(ngModel)]="projectService.selectedProjectBid.phoneNumber" name="phoneNumber" placeholder="Phone Number">
     <input type="text" #contractorName="ngModel" [(ngModel)]="projectService.selectedProjectBid.contractorName" name="contractorName" placeholder="Contractor Name">
     <input type="text" #city="ngModel" [(ngModel)]="projectService.selectedProjectBid.city" name="city" placeholder="City">

@@ -6,7 +6,6 @@
       </mat-form-field>
     </div>
     <mat-table #table [dataSource]="dataSource">
-      <!-- ProjectName Column -->
       <ng-container matColumnDef="projectName">
         <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.projectName}} </mat-cell>
@@ -22,25 +21,21 @@
             <mat-cell *matCellDef="let element"> {{element.contractorName}} </mat-cell>
           </ng-container>
   
-      <!-- StartDate Column -->
       <ng-container matColumnDef="startDate">
         <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.startDate}} </mat-cell>
       </ng-container>
   
-      <!-- EndDate Column -->
       <ng-container matColumnDef="endDate">
         <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.endDate}} </mat-cell>
       </ng-container>
 
-      <!-- ProjectStatus Column -->
       <ng-container matColumnDef="budget">
           <mat-header-cell *matHeaderCellDef> Budget </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.budget}} </mat-cell>
         </ng-container>
 
-      <!-- ProjectStatus Column -->
       <ng-container matColumnDef="bidStatus">
           <mat-header-cell *matHeaderCellDef> Bid Status </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.bidStatus}} </mat-cell>
@@ -49,7 +44,7 @@
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <ng-container *ngIf="element.status === 'open'">
+            <ng-container *ngIf="element.bidStatus === 'applied'">
               <button class="display" (click)=acceptBid(element.projectName,element.contractorEmail) mat-raised-button >AcceptBid</button>
             </ng-container>
           </mat-cell>

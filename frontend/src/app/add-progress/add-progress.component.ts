@@ -4,7 +4,7 @@ import { ProgressTimeline } from '../shared/progress-timeline.model'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
-
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-add-progress',
@@ -49,7 +49,7 @@ export class AddProgressComponent implements OnInit {
           this.serverErrorMessages = err.error.join('<br/>');
         }
         else
-          this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+          this.serverErrorMessages = 'Something went wrong. Please contact admin.';
       }
     );
   }
@@ -59,7 +59,6 @@ export class AddProgressComponent implements OnInit {
     var a = d.toLocaleString();       // -> "2/1/2013 7:37:08 AM"
     var curUser = JSON.parse(localStorage.getItem("currentUser"));
     var pName = localStorage.getItem("projectName");
-    alert(progress.description)
     return this.projectService.selectedProgress = {
       projectName: pName,
       contractorEmail: curUser.email,
@@ -70,6 +69,7 @@ export class AddProgressComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+    window.location.href = environment.apiFrontEndUrl+'/progressTimeline';
   }
 
 }

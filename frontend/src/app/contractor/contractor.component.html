@@ -45,7 +45,7 @@
         </mat-cell>
       </ng-container>
   
-      <mat-header-row *matHeaderRowDef="displayedOpenListColumns"></mat-header-row>
+      <mat-header-row *matHeaderRowDef="displayedOpenListColumns; sticky: true"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedOpenListColumns;"></mat-row>
     </mat-table>
   </div>
@@ -92,11 +92,13 @@
           <ng-container matColumnDef="progress">
             <mat-header-cell *matHeaderCellDef> Add Progress Details </mat-header-cell>
             <mat-cell *matCellDef="let element">
+              <ng-container *ngIf="element.bidStatus === 'accepted'">
               <button class="display" (click) = addProgress(element.projectName) mat-raised-button  >Add Progress</button>
+            </ng-container> 
             </mat-cell>
           </ng-container>
       
-          <mat-header-row *matHeaderRowDef="displayedBiddingListColumns"></mat-header-row>
+          <mat-header-row *matHeaderRowDef="displayedBiddingListColumns; sticky: true" ></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedBiddingListColumns;"></mat-row>
         </mat-table>
       </div>

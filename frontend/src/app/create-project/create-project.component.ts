@@ -3,6 +3,7 @@ import { ProjectService } from '../shared/project.service'
 import { NgForm } from '@angular/forms';
 import { Project } from '../shared/project.model';
 import { MatDialogRef } from '@angular/material/dialog';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-create-project',
@@ -76,5 +77,6 @@ export class CreateProjectComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+    window.location.href = environment.apiFrontEndUrl+'/company';
   }
 }

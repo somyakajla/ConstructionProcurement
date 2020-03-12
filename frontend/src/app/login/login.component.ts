@@ -56,9 +56,9 @@ export class LoginComponent implements OnInit {
             },
             error => {
                 this.loading = false;
-            });
+                this.serverErrorMessages = 'Something went wrong. Please contact admin.';
+              });
   }
-
   registerUser() {
     this.dialog.open(RegisterComponent);
   }

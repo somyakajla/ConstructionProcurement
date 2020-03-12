@@ -5,18 +5,19 @@
         <span *ngIf="signUpForm.submitted && !projectName.valid">
           <label class="validation-message">This field is required.</label>
         </span>
-      
-     
-      <input type="text" #startDate="ngModel" [(ngModel)]="projectService.selectedProject.startDate" name="startDate" placeholder="startDate"
-      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !startDate.valid }">
-      <span *ngIf="signUpForm.submitted && !startDate.valid">
-        <label class="validation-message">This field is required.</label>
-      </span>
-      <input type="text" #endDate="ngModel" [(ngModel)]="projectService.selectedProject.endDate" name="endDate" placeholder="endDate"
-      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !endDate.valid }">
-      <span *ngIf="signUpForm.submitted && !endDate.valid">
-        <label class="validation-message">This field is required.</label>
-      </span>
+        <mat-form-field style="height: 70px;">
+          <input matInput [matDatepicker]="picker" #startDate="ngModel" [(ngModel)]="projectService.selectedProject.startDate" name="startDate" placeholder="startDate"
+          required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field style="height: 70px;">
+          <input matInput [matDatepicker]="picker1"  #endDate="ngModel" [(ngModel)]="projectService.selectedProject.endDate" name="endDate" placeholder="endDate"
+          required>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+    
       <input type="text" #city="ngModel" [(ngModel)]="projectService.selectedProject.city" name="city" placeholder="city"
       required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !city.valid }">
       <span *ngIf="signUpForm.submitted && !city.valid">

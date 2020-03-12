@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { from } from 'rxjs';
 import { ProjectBid } from '../shared/project-bid.model';
 import { MatDialogRef } from '@angular/material/dialog';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-bid-on-project',
@@ -44,8 +45,6 @@ export class BidOnProjectComponent implements OnInit {
   fillCompleteForm(projectBid : ProjectBid) {
     var item1 = localStorage.getItem("bidProjectName");
     var item2 = JSON.parse(localStorage.getItem("currentUser"));
-    alert(item1);
-    alert(item2.email);
     return this.projectService.selectedProjectBid = {
       projectName: item1,
       contractorEmail: item2.email, 
@@ -81,7 +80,6 @@ export class BidOnProjectComponent implements OnInit {
 
     close() {
       this.dialogRef.close();
+      window.location.href = environment.apiFrontEndUrl+'/contractor';
     }
-
-
 }
