@@ -70,7 +70,7 @@ projectBidSchema.path('projectName').validate((val) => {
  * only 10 digits and numeric number are allowed
  */
 projectBidSchema.path('phoneNumber').validate((val) => {
-    phoneRegex = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/;
+    phoneRegex = /^\d{10}$/;
     return phoneRegex.test(val);
 }, 'Invalid phone-number.');
 

@@ -46,6 +46,15 @@ userSchema.path('email').validate((val) => {
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
 
+/**
+ * validate phone number of owner/contact person
+ * only 10 digits and numeric number are allowed
+ */
+userSchema.path('phoneNumber').validate((val) => {
+    phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(val);
+}, 'Invalid phone-number.');
+
 // Events
 userSchema.pre('save', function (next) {
     bcrypt.genSalt(10, (err, salt) => {
